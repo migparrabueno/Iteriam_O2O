@@ -1,0 +1,111 @@
+<div class="container">
+    <h1>Beer Recipe List</h1>
+    <div class="row">
+        <div class="col">
+            <div class="form group">
+                <input type="text" class="form-control" placeholder="Search..." name="filterBeers" [(ngModel)]="filterBeers">
+            </div>
+        </div>
+    </div>
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" *ngFor="let beer of beers | filter:filterBeers" (click)="open(mymodal, beer)">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{beer.name}}</h5>
+              <small class="text-muted">{{beer.first_brewed}}</small>
+            </div>
+            <p class="mb-1">{{beer.tagline}}</p>
+            <small class="text-muted">Contribuited by {{beer.contributed_by}}</small>
+          </a>
+    </div>
+</div>
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{selectedBeer.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="recipe-body">
+        <div>
+            <h5>{{selectedBeer.tagline}}</h5>
+        </div> 
+        <img src={{selectedBeer.image_url}} alt="beerImage" class="recipe-img">
+        <div>
+            <p>{{selectedBeer.description}}</p>
+        </div>
+        <div>
+            <h6>Features</h6>
+            <ul>
+                <li>Abv: {{selectedBeer.abv}}</li>
+                <li>Ibu: {{selectedBeer.ibu}}</li>
+                <li>Target_fg: {{selectedBeer.target_fg}}</li>
+                <li>Ebc: {{selectedBeer.ebc}}</li>
+                <li>Srm: {{selectedBeer.srm}}</li>
+                <li>PH: {{selectedBeer.ph}}</li>
+                <li>Attenuation level: {{selectedBeer.attenuation_level}}</li>
+                <li>Volume: {{selectedBeer.volume.value}} {{selectedBeer.volume.unit}}</li>
+                <li>Boil volume: {{selectedBeer.boil_volume.value}} {{selectedBeer.boil_volume.unit}}</li>
+              </ul>
+        </div>
+        <div>
+            <h6>Ingredients</h6>
+            <div>
+                <p>Malt</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let malt of selectedBeer.ingredients.malt; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{malt.name}}</td>
+                        <td>{{malt.amount.value}} {{malt.amount.unit}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <p>Hops</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Attribute</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let hop of selectedBeer.ingredients.hops; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{hop.name}}</td>
+                        <td>{{hop.amount.value}} {{hop.amount.unit}}</td>
+                        <td>{{hop.attribute}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <p>Yeast: {{selectedBeer.ingredients.yeast}}</p>
+            </div>
+        </div>
+        <div>
+            <h6>Food Pairing</h6>
+            <ul *ngFor="let food of selectedBeer.food_pairing">
+                <li>{{food}}</li>
+              </ul>
+        </div>
+        <div>
+            <h6>Brewers tips</h6>
+            <p>{{selectedBeer.brewers_tips}}</p>
+        </div>
+    </div> 
+  </div>
+</ng-template>

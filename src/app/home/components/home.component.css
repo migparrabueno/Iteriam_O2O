@@ -1,0 +1,12 @@
+.recipe-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.recipe-img {
+    display:block;
+    margin:auto;
+    width: auto;
+    height: 400px;
+}
