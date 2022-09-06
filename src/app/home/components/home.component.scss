@@ -1,4 +1,16 @@
-.noItems {
+.title {
+    padding: 1em 1em 1em 1em;
+    font-family: 'Beer', sans-serif;
+    text-align: center;
+}
+
+.row {
+    width: 360px;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.no-items {
     text-align: center;
     margin-top: 20%;
 }
@@ -14,4 +26,66 @@
     margin:auto;
     width: auto;
     height: 400px;
+}
+
+.list-group {
+    gap: 1em;
+}
+
+.card {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover  {
+        background-color: rgba(109, 159, 147, 0.239);
+    }
+}
+
+.card-info {
+    padding: 1em;
+    font-family: 'Beer', sans-serif;
+    color:#2d66ab;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info-top {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.tagline-info {
+    width: fit-content;
+    font-size: small;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    background-color: #d3440c4f;
+}
+
+.description-info {
+    font-size: smaller;
+}
+
+.description-info > p {
+    margin: 0;
+}
+
+.card-image {
+    height: 95%;
+    width: 150px;
+    align-self: center;
+}
+
+.card-image > img {
+    display:block;
+    margin:auto;
+    width: auto;
+    height: 100%;
 }
