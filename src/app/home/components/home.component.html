@@ -7,7 +7,10 @@
             </div>
         </div>
     </div>
-    <div class="list-group">
+    <div *ngIf="beers.length == 0" class="noItems">
+        <h3>There are no elements to show</h3>        
+    </div>
+    <div class="list-group" *ngIf="beers.length > 0">
         <a href="#" class="list-group-item list-group-item-action" *ngFor="let beer of beers | filter:filterBeers" (click)="open(mymodal, beer)">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{beer.name}}</h5>
